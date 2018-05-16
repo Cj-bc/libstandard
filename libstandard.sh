@@ -43,11 +43,10 @@ function is_error {
 # execute all <lib>.init at first. Won't be called by user.
 # @param <string lib1> <string lib2> ...
 # @return 0 success
-# @return 1 fail in some library
-# @return 2 fail in this function
+# @return 3 fail in some library
 function init {
   for lib in "$@";do
-    ${lib}.init || ~error "fail: sourcing ${lib}" && return 1
+    ${lib}.init || ~error "fail: sourcing ${lib}" && return 3
   done
   return 0
 }
