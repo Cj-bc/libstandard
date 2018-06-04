@@ -10,17 +10,17 @@
 
 # output error message to stderr
 # @stderr string error message
-# @param <string error_message>
-# @return 0 success
+# @param <int error_code> <string error_message>
+# @return <given return code>
 function error {
-  echo "$@" >2
-  return 0
+  echo "$2" >2
+  exit $1
 }
 
 # check if previous command fail and execute command
 # @param <function error_op> [<function success_op>]
-# @return 0 success
-# @return 1 function not found
+# @return $EX_OK(0) success
+# @return $EX_DATAERR function not found
 function is_error {
   local status=$?
   local error_operation=()
@@ -32,9 +32,9 @@ function is_error {
   local success_operation=($@)
 
   if [ $status -eq 0 ]; then
-    ${success_operation[@]} || return 1
+    ${success_operation[@]} || return $EX_DATAERR
   else
-    ${error_operation[@]} || return 1
+    ${error_operation[@]} || return $EX_DATAERR
   fi
   return 0
 }
