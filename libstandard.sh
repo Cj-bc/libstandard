@@ -65,7 +65,7 @@ function is_error {
 # @return 3 fail in some library
 function init {
   for lib in "$@";do
-    ${lib}.init || ~error "fail: sourcing ${lib}" && return 3
+    ${lib}.init || error 3 "fail: sourcing ${lib}"
   done
   return 0
 }
