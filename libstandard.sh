@@ -45,7 +45,7 @@ function is_error {
   local error_operation=()
   for arg in "$@";do
     [ "$arg" = "--" ] && shift && break
-    error_operation=(${error_operation[@]} $arg)
+    error_operation=("${error_operation[@]}" $arg)
     shift
   done
   local success_operation=($@)
