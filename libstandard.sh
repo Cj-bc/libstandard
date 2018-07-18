@@ -30,8 +30,10 @@ EX_CONFIG=78
 # @param <int error_code> <string error_message>
 # @return <given return code>
 function error {
-  echo "$2" >2
-  exit $1
+  local exitcode=$1
+  shift
+  echo "$@" >2
+  exit $exitcode
 }
 
 # check if previous command fail and execute command
