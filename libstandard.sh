@@ -69,3 +69,11 @@ function init {
   done
   return 0
 }
+
+
+# execute all operations which should be done before end of the script.
+# @return 0 success
+# @return 1 fail in 
+function end {
+  :
+}
